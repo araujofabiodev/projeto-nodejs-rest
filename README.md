@@ -14,3 +14,6 @@ O body-parser é um middleware do Express.js que facilita o acesso aos dados env
 
 npm i mysql
 Comando para instalar o mysql no node.
+
+npm i moment
+Para formatar datas.
