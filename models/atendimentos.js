@@ -19,7 +19,7 @@ class Atendimento {
             {
                 nome: 'data',
                 valido: dataValida,
-                mensagem: 'Data deve ser amior ou igual a data atual'
+                mensagem: 'Data deve ser maior ou igual a data atual'
             },
             {
                 nome: 'cliente',
@@ -72,6 +72,32 @@ class Atendimento {
                 res.status(200).json(atendimento);
             }
         });
+    }
+
+    altera(id, valores, res){
+
+        const sql = 'UPDATE Atendimentos SET ? WHERE id=?';
+
+        conexao.query(sql, [valores, id], (erro, resultados) => {
+            if(erro){
+                res.status(400).json(erro);
+            } else {
+                res.status(200).json({...valores, id});
+            }
+            
+        });
+    }
+
+    deleta(id, res){
+        const sql = 'DELETE FROM Atendimentos WHERE id=?';
+        
+        conexao.query(sql, id, (erro, resultados) => {
+            if(erro){
+                res.status(400).json(erro);
+            } else {
+                res.status(200).json({id});
+            }
+        })
     }
 }
 
